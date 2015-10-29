@@ -57,7 +57,9 @@ BuildRoot:     %{_tmppath}/%{name}-%{version}
 #BuildRequires: boost-devel
 BuildRequires: check-devel
 BuildRequires: glibc-devel
+%ifnarch ppc64 ppc64le
 BuildRequires: openssl-devel
+%endif
 BuildRequires: scons
 %if 0%{?suse_version} == 1110
 # On SLES11 SPx use the linked gcc47 to build instead of default gcc43
@@ -76,7 +78,9 @@ BuildRequires: libgomp1
 BuildRequires: libstdc++6
 #!BuildIgnore: libgcc43
 %else
+%ifnarch ppc64 ppc64le
 BuildRequires: gcc-c++
+%endif
 %endif
 
 %if %{defined fedora}
@@ -93,7 +97,7 @@ BuildRequires: systemd
 
 %ifarch ppc64le 
 %if 0%{?rhel} >= 7
-Requires: advance-toolchain-at8.0-rc1-runtime
+Requires: advance-toolchain-at8.0-runtime
 %endif
 AutoReq: 0
 %endif
